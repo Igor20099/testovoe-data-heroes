@@ -15,7 +15,7 @@ onMounted(() => {
   store.dispatch("fetchData", {
     page: store.state.currentPage,
     filterName: "",
-    filterStatus: "alive",
+    filterStatus: "",
   });
 });
 
