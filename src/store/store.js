@@ -12,21 +12,19 @@ export const store = createStore({
     };
   },
   actions: {
-    async fetchData(
-      { commit, state },
-      page,
-      filterName = "",
-      filterStatus = ""
-    ) {
-      if (state.currentPage === page) return;
+    async fetchData({ commit, state }, { page, filterName, filterStatus }) {
+      console.log(filterStatus);
+      //   if (state.currentPage === page) return;
+      commit("setFilterName", filterName);
+      commit("setFilterStatus", filterStatus);
       commit("setCurrentPage", page);
       const response = await axios.get(
         `https://rickandmortyapi.com/api/character`,
         {
           params: {
             page: state.currentPage,
-            name: filterName,
-            status: filterStatus,
+            name: state.filterName,
+            status: state.filterStatus,
           },
         }
       );
@@ -34,7 +32,6 @@ export const store = createStore({
       commit("setCharacters", response.data.results);
       state.characters.forEach(async (char) => {
         const firstEpisode = await axios.get(char.episode[0]);
-        console.log(firstEpisode.data.name);
         char.firstSeen = firstEpisode.data.name;
       });
       window.scrollTo(0, 0);
@@ -53,7 +50,7 @@ export const store = createStore({
     setFilterName(state, filterName) {
       state.filterName = filterName;
     },
-    setfilterStatus(state, filterStatus) {
+    setFilterStatus(state, filterStatus) {
       state.filterStatus = filterStatus;
     },
   },

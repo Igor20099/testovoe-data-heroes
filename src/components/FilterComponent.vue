@@ -8,7 +8,17 @@
         <option value="dead">Dead</option>
         <option value="unknown">Unknown</option>
       </select>
-      <button @click.prevent="changePage(page)">Применить</button>
+      <button
+        @click.prevent="
+          $store.dispatch('fetchData', {
+            page: 1,
+            filterName: name,
+            filterStatus: status,
+          })
+        "
+      >
+        Применить
+      </button>
     </form>
   </div>
 </template>

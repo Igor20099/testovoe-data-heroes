@@ -2,7 +2,13 @@
   <div class="paginator">
     <ul class="list">
       <li
-        @click.prevent="$store.dispatch('fetchData', page)"
+        @click.prevent="
+          $store.dispatch('fetchData', {
+            page: page,
+            filterName: $store.state.filterName,
+            filterStatus: $store.state.filterStatus,
+          })
+        "
         class="page"
         :class="$store.state.currentPage === page ? 'active' : ''"
         :key="i"

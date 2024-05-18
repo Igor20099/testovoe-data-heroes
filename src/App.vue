@@ -12,7 +12,11 @@ const characters = ref([]);
 const store = useStore();
 
 onMounted(() => {
-  store.dispatch("fetchData");
+  store.dispatch("fetchData", {
+    page: store.state.currentPage,
+    filterName: "",
+    filterStatus: "alive",
+  });
 });
 
 const changePage = async (page) => {};
