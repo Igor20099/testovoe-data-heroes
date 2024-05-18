@@ -6,7 +6,7 @@ export const store = createStore({
     return {
       characters: [],
       pages: 0,
-      currentPage: 1,
+      currentPage: 0,
       filterName: "",
       filterStatus: "",
     };
@@ -14,7 +14,7 @@ export const store = createStore({
   actions: {
     async fetchData({ commit, state }, { page, filterName, filterStatus }) {
       console.log(filterStatus);
-      //   if (state.currentPage === page) return;
+      if (state.currentPage === page) return;
       commit("setFilterName", filterName);
       commit("setFilterStatus", filterStatus);
       commit("setCurrentPage", page);
@@ -22,7 +22,7 @@ export const store = createStore({
         `https://rickandmortyapi.com/api/character`,
         {
           params: {
-            page: state.currentPage,
+            page: page,
             name: state.filterName,
             status: state.filterStatus,
           },

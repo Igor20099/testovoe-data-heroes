@@ -13,7 +13,7 @@ const store = useStore();
 
 onMounted(() => {
   store.dispatch("fetchData", {
-    page: store.state.currentPage,
+    page: 1,
     filterName: "",
     filterStatus: "",
   });
