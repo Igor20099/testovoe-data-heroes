@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted } from "vue";
 import { useStore } from "vuex";
 import CharacterListComponent from "./components/CharacterListComponent.vue";
 import FilterComponent from "./components/FilterComponent.vue";
