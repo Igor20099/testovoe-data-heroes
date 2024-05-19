@@ -1,14 +1,15 @@
 <template>
   <div class="filter">
     <form class="form">
-      <input type="text" placeholder="Имя" v-model="name" />
-      <select name="status" id="" v-model="status">
+      <input type="text" placeholder="Имя" v-model="name" class="input" />
+      <select name="status" id="" v-model="status" class="select">
         <option value="" selected>All</option>
         <option value="alive">Alive</option>
         <option value="dead">Dead</option>
         <option value="unknown">Unknown</option>
       </select>
       <button
+        class="btn"
         @click.prevent="
           $store.dispatch('fetchData', {
             page: 1,
@@ -24,13 +25,10 @@
 </template>
 
 <script setup>
-import { useStore } from "vuex";
 import { ref } from "vue";
 
 const name = ref("");
 const status = ref("");
-
-const store = useStore();
 </script>
 
 <style scoped>
@@ -44,5 +42,18 @@ const store = useStore();
   display: flex;
   justify-content: center;
   gap: 8px;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.select {
+  padding: 8px;
+}
+
+.input {
+  padding: 8px;
 }
 </style>
